@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wordle</title>
-    <!-- Load Tailwind CSS from CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
@@ -132,47 +131,43 @@
 
     <h1 class="text-4xl font-bold mb-8">Wordle</h1>
 
-    <!-- Game Board -->
     <div id="board" class="board"></div>
 
-    <!-- Keyboard -->
     <div id="keyboard" class="mt-8 grid grid-cols-10 gap-2 w-full max-w-md">
         <div class="col-span-10 grid grid-cols-10 gap-1.5">
-            <button class="key col-span-1">Q</button>
-            <button class="key col-span-1">W</button>
-            <button class="key col-span-1">E</button>
-            <button class="key col-span-1">R</button>
-            <button class="key col-span-1">T</button>
-            <button class="key col-span-1">Y</button>
-            <button class="key col-span-1">U</button>
-            <button class="key col-span-1">I</button>
-            <button class="key col-span-1">O</button>
-            <button class="key col-span-1">P</button>
+            <button class="key col-span-1" data-key="Q">Q</button>
+            <button class="key col-span-1" data-key="W">W</button>
+            <button class="key col-span-1" data-key="E">E</button>
+            <button class="key col-span-1" data-key="R">R</button>
+            <button class="key col-span-1" data-key="T">T</button>
+            <button class="key col-span-1" data-key="Y">Y</button>
+            <button class="key col-span-1" data-key="U">U</button>
+            <button class="key col-span-1" data-key="I">I</button>
+            <button class="key col-span-1" data-key="O">O</button>
+            <button class="key col-span-1" data-key="P">P</button>
         </div>
         <div class="col-start-2 col-span-8 grid grid-cols-9 gap-1.5">
-            <button class="key col-span-1">A</button>
-            <button class="key col-span-1">S</button>
-            <button class="key col-span-1">D</button>
-            <button class="key col-span-1">F</button>
-            <button class="key col-span-1">G</button>
-            <button class="key col-span-1">H</button>
-            <button class="key col-span-1">J</button>
-            <button class="key col-span-1">K</button>
-            <button class="key col-span-1">L</button>
+            <button class="key col-span-1" data-key="A">A</button>
+            <button class="key col-span-1" data-key="S">S</button>
+            <button class="key col-span-1" data-key="D">D</button>
+            <button class="key col-span-1" data-key="F">F</button>
+            <button class="key col-span-1" data-key="G">G</button>
+            <button class="key col-span-1" data-key="H">H</button>
+            <button class="key col-span-1" data-key="J">J</button>
+            <button class="key col-span-1" data-key="K">K</button>
+            <button class="key col-span-1" data-key="L">L</button>
         </div>
         <div class="col-span-10 grid grid-cols-11 gap-1.5">
-            <button id="enter" class="key col-span-2">Enter</button>
-            <button class="key col-span-1">Z</button>
-            <button class="key col-span-1">X</button>
-            <button class="key col-span-1">C</button>
-            <button class="key col-span-1">V</button>
-            <button class="key col-span-1">B</button>
-            <button class="key col-span-1">N</button>
-            <button class="key col-span-1">M</button>
-            <button id="backspace" class="key col-span-2">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 11V5l7 7-7 7v-6H5a2 2 0 01-2-2z" />
-                </svg>
+            <button id="enter" class="key col-span-2" data-key="Enter">Enter</button>
+            <button class="key col-span-1" data-key="Z">Z</button>
+            <button class="key col-span-1" data-key="X">X</button>
+            <button class="key col-span-1" data-key="C">C</button>
+            <button class="key col-span-1" data-key="V">V</button>
+            <button class="key col-span-1" data-key="B">B</button>
+            <button class="key col-span-1" data-key="N">N</button>
+            <button class="key col-span-1" data-key="M">M</button>
+            <button id="backspace" class="key col-span-2" data-key="Backspace">
+                DEL
             </button>
         </div>
     </div>
@@ -341,7 +336,7 @@
         'pints', 'pions', 'pious', 'pipes', 'piper', 'pique', 'piste', 'piths', 'pithy', 'pivot',
         'pixel', 'pixie', 'pizza', 'place', 'plaid', 'plain', 'plait', 'plane', 'plank', 'plans',
         'plant', 'plate', 'plath', 'plays', 'plaza', 'plead', 'pleas', 'pleat', 'plumb', 'plume',
-        'plums', 'plunk', 'poach', 'pocks', 'podgy', 'poets', 'point', 'poise', 'polar', 'poles',
+        'plums', 'plunk', 'poach', 'pocks', 'podge', 'poets', 'point', 'poise', 'polar', 'poles',
         'polls', 'pools', 'porch', 'pores', 'ports', 'posed', 'poses', 'posse', 'posts', 'potty',
         'pouch', 'pound', 'pours', 'power', 'prawn', 'preen', 'press', 'price', 'prick', 'pride',
         'pried', 'pries', 'prime', 'prims', 'prink', 'print', 'prior', 'prism', 'privy', 'prize',
@@ -440,20 +435,7 @@
         'vowed', 'vowel', 'vulva', 'waded', 'wader', 'wades', 'wagon', 'wails', 'waist', 'waits',
         'waive', 'walls', 'waltz', 'wands', 'wanes', 'wants', 'wards', 'wareh', 'wares', 'warmth',
         'warns', 'warps', 'warts', 'warty', 'wasps', 'waste', 'watch', 'water', 'waved', 'waver',
-        'waves', 'waxen', 'waxes', 'weans', 'wears', 'weber', 'wedgy', 'weeds', 'weedy', 'weigh',
-        'weird', 'welch', 'welds', 'wells', 'welsh', 'welts', 'wench', 'wends', 'whack', 'whale',
-        'wharf', 'wheat', 'wheel', 'whelm', 'where', 'whet', 'which', 'whiff', 'while', 'whims',
-        'whine', 'whiny', 'whirl', 'whisk', 'white', 'whole', 'whomp', 'whoop', 'whore', 'whose',
-        'wicks', 'widen', 'wider', 'widow', 'width', 'wield', 'wight', 'wilds', 'wiles', 'wills',
-        'wilts', 'wince', 'winch', 'winds', 'windy', 'wined', 'wines', 'wings', 'winks', 'wipes',
-        'wired', 'wires', 'wiser', 'wisps', 'wispy', 'witch', 'witsy', 'witty', 'wives', 'woken',
-        'wolfs', 'woman', 'wombs', 'woody', 'wooer', 'wools', 'wooly', 'woozy', 'words', 'wordy',
-        'works', 'world', 'worms', 'wormy', 'worry', 'worse', 'worst', 'worth', 'would', 'wound',
-        'woven', 'wowed', 'wrack', 'wraps', 'wrath', 'wreak', 'wreck', 'wrens', 'wrest', 'wrier',
-        'wring', 'wrist', 'write', 'writs', 'wrong', 'wrote', 'wrung', 'yacht', 'yanks', 'yards',
-        'yarns', 'yawls', 'yawns', 'yearn', 'years', 'yeast', 'yells', 'yelps', 'yodel', 'yoked',
-        'yokes', 'yolks', 'young', 'yours', 'youth', 'yowls', 'yuppy', 'yurts', 'zappy', 'zesty',
-        'zippy', 'zombi', 'zone', 'zooey', 'zooks', 'zonal'
+        'waves', 'waxen', 'waxes', 'weans', 'wears', 'weber', 'wedgy', 'weeds', 'weedy',
     ];
     const NUM_ROWS = 6;
     const NUM_COLS = 5;
@@ -526,7 +508,7 @@
     function renderKeyboard() {
         const keys = document.querySelectorAll('.key');
         keys.forEach(key => {
-            const letter = key.textContent.toLowerCase();
+            const letter = key.dataset.key.toLowerCase();
             if (keyboardStates[letter]) {
                 key.className = `key col-span-1 ${keyboardStates[letter]}`;
             } else if (letter === 'enter' || letter === 'backspace') {
@@ -557,7 +539,7 @@
     function updateBoard() {
         const tiles = boardElement.children[currentRow].children;
         for (let i = 0; i < NUM_COLS; i++) {
-            tiles[i].textContent = currentGuess[i] || '';
+            tiles[i].textContent = currentGuess[i] ? currentGuess[i].toUpperCase() : '';
         }
     }
 
@@ -567,7 +549,6 @@
             if (currentGuess.length !== NUM_COLS) {
                 showMessage("Guess must be 5 letters");
                 shakeBoard();
-                if (navigator.vibrate) navigator.vibrate([100, 50, 100]); // Vibrate for invalid guess
             }
             return;
         }
@@ -576,7 +557,6 @@
         if (!WORD_LIST.includes(currentGuess)) {
             showMessage("Not a valid word");
             shakeBoard();
-            if (navigator.vibrate) navigator.vibrate([100, 50, 100]); // Vibrate for invalid guess
             return;
         }
 
@@ -588,7 +568,6 @@
             gameOver = true;
             showMessage("You got it!");
             newGameButtonContainer.classList.remove('hidden');
-            if (navigator.vibrate) navigator.vibrate([100, 50, 100, 50, 100, 50, 100, 50, 100]); // Vibrate for win
         } else if (currentRow === NUM_ROWS - 1) {
             gameOver = true;
             showMessage(`Out of guesses! The word was ${targetWord.toUpperCase()}`);
@@ -677,15 +656,22 @@
         if (gameOver) return;
 
         const target = e.target;
-        if (target.tagName === 'BUTTON' || target.closest('button')) {
-            const button = target.closest('button');
-            const key = button.textContent.trim().toLowerCase();
+        // Find the closest button element that was clicked
+        const button = target.closest('button');
 
-            if (key === 'enter') {
+        if (button) {
+            let key = button.dataset.key; // Check for a data-key attribute first
+
+            // If no data-key, fall back to text content for letter keys
+            if (!key) {
+                key = button.textContent.trim().toLowerCase();
+            }
+
+            if (key === 'Enter') {
                 submitGuess();
-            } else if (key === 'backspace') {
+            } else if (key === 'Backspace') {
                 removeLetter();
-            } else if (key.length === 1 && key.match(/[a-z]/)) {
+            } else if (key.length === 1 && key.match(/[a-zA-Z]/)) {
                 addLetter(key);
             }
         }
