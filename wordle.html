@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Wordle</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -123,6 +123,10 @@
         .new-game-button-container {
             margin-top: 20px;
         }
+        .key {
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+    }
     </style>
 </head>
 <body class="bg-[#1a1a1a] text-white flex flex-col items-center justify-center min-h-screen p-4">
@@ -635,19 +639,31 @@
 
     // --- Event Listeners ---
 
-    // Listen for physical keyboard input
-    window.addEventListener('keydown', (e) => {
-        if (gameOver) return;
+// Listen for touches on the on-screen keyboard to prevent zoom on mobile.
+document.getElementById('keyboard').addEventListener('touchstart', (e) => {
+    // Prevent the default browser behavior (e.g., scrolling, zooming)
+    e.preventDefault();
 
-        const key = e.key;
-        if (key === 'Enter') {
-            submitGuess();
-        } else if (key === 'Backspace') {
-            removeLetter();
-        } else if (key.length === 1 && key.match(/[a-zA-Z]/)) {
-            addLetter(key);
+    if (gameOver) return;
+
+    const target = e.target;
+    // Find the closest button element that was touched
+    const button = target.closest('button');
+
+    if (button) {
+        let key = button.dataset.key;
+
+        if (key) { // Use the data-key for all actions
+            if (key === 'Enter') {
+                submitGuess();
+            } else if (key === 'Backspace') {
+                removeLetter();
+            } else if (key.length === 1 && key.match(/[a-zA-Z]/)) {
+                addLetter(key);
+            }
         }
-    });
+    }
+}, { passive: false }); // Add { passive: false } to allow e.preventDefault()
 
     // Listen for clicks on the on-screen keyboard
     document.getElementById('keyboard').addEventListener('click', (e) => {
