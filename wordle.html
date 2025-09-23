@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -108,16 +110,16 @@
             opacity: 1;
         }
         .button-reset {
-          background-color: #4a4a4a;
-          color: white;
-          padding: 10px 20px;
-          border-radius: 8px;
-          font-weight: 600;
-          cursor: pointer;
-          transition: background-color 0.2s;
+            background-color: #4a4a4a;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
         }
         .button-reset:hover {
-          background-color: #6a6a6a;
+            background-color: #6a6a6a;
         }
         .new-game-button-container {
             margin-top: 20px;
@@ -177,7 +179,6 @@
     </div>
 
 <script>
-    // The word list is now embedded directly in the HTML file for full functionality.
     const WORD_LIST = [
         'aback', 'abase', 'abate', 'abbey', 'abbot', 'abide', 'abort', 'about', 'above', 'abuse',
         'abyss', 'acorn', 'acrid', 'actor', 'acute', 'adage', 'adapt', 'adept', 'admin', 'admit',
@@ -437,7 +438,7 @@
         'waive', 'walls', 'waltz', 'wands', 'wanes', 'wants', 'wards', 'wareh', 'wares', 'warmth',
         'warns', 'warps', 'warts', 'warty', 'wasps', 'waste', 'watch', 'water', 'waved', 'waver',
         'waves', 'waxen', 'waxes', 'weans', 'wears', 'weber', 'wedgy', 'weeds', 'weedy',
-    ];
+   ];
     const NUM_ROWS = 6;
     const NUM_COLS = 5;
 
@@ -458,7 +459,6 @@
 
     // Initializes the game, setting the target word and resetting state.
     function startNewGame() {
-  // Reset DOM and add event listeners        
         if (WORD_LIST.length > 0) {
             targetWord = WORD_LIST[Math.floor(Math.random() * WORD_LIST.length)];
         } else {
@@ -487,32 +487,29 @@
         newGameButtonContainer.classList.add('hidden');
         renderKeyboard();
     }
-
-//enables phopne and desktop keyboard entry
-function handleKeyPress(key) {
-    if (gameOver) return;
-
-    if (key === 'Enter') {
-        submitGuess();
-        hapticFeedback();
-    } else if (key === 'Backspace') {
-        removeLetter();
-        hapticFeedback();
-    } else if (key.length === 1 && key.match(/[a-zA-Z]/)) {
-        addLetter(key);
-        hapticFeedback();
-    }
-}
-
     
-    //Enables haptic feedback on keystrokes
-    function hapticFeedback() {
-    // Check if the Vibration API is supported by the browser
-    if ("vibrate" in navigator) {
-        // Vibrate for 50 milliseconds
-        navigator.vibrate(50);
+    // Handles key presses from either touch or click events
+    function handleKeyAction(key) {
+        if (gameOver) return;
+
+        if (key === 'Enter') {
+            submitGuess();
+        } else if (key === 'Backspace') {
+            removeLetter();
+        } else if (key.length === 1 && key.match(/[a-zA-Z]/)) {
+            addLetter(key);
+        }
+        
+        hapticFeedback();
     }
-}
+
+    // Enables haptic feedback on keystrokes
+    function hapticFeedback() {
+        if ("vibrate" in navigator) {
+            navigator.vibrate(50);
+        }
+    }
+    
     // Displays a temporary message to the user.
     function showMessage(text) {
         messageBox.textContent = text;
@@ -539,7 +536,7 @@ function handleKeyPress(key) {
             if (keyboardStates[letter]) {
                 key.className = `key col-span-1 ${keyboardStates[letter]}`;
             } else if (letter === 'enter' || letter === 'backspace') {
-                 // Do nothing, these buttons don't have a state
+                    // Do nothing, these buttons don't have a state
             }
         });
     }
@@ -647,7 +644,7 @@ function handleKeyPress(key) {
             if (currentKeyStatus !== 'correct' && currentKeyStatus !== 'wrong-position' && isWrongPosition) {
                 keyboardStates[letter] = 'wrong-position';
             } else if (currentKeyStatus !== 'correct' && currentKeyStatus !== 'wrong-position' && !isWrongPosition) {
-                 keyboardStates[letter] = 'not-in-word';
+                    keyboardStates[letter] = 'not-in-word';
             }
         }
         renderKeyboard();
@@ -663,34 +660,46 @@ function handleKeyPress(key) {
     }
 
     // --- Event Listeners ---
+    newGameButton.addEventListener('click', startNewGame);
 
-// Touch event listener for mobile devices
-document.getElementById('keyboard').addEventListener('touchstart', (e) => {
-    e.preventDefault();
-    const button = e.target.closest('button');
-    if (button) {
-        const key = button.dataset.key;
-        if (key) {
-            handleKeyAction(key);
+    // Touch event listener for mobile devices
+    document.getElementById('keyboard').addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        const button = e.target.closest('button');
+        if (button) {
+            const key = button.dataset.key;
+            if (key) {
+                handleKeyAction(key);
+            }
         }
-    }
-}, { passive: false });
+    }, { passive: false });
 
-// Click event listener for desktop browsers
-document.getElementById('keyboard').addEventListener('click', (e) => {
-    const button = e.target.closest('button');
-    if (button) {
-        const key = button.dataset.key;
-        if (key) {
-            handleKeyAction(key);
+    // Click event listener for desktop browsers
+    document.getElementById('keyboard').addEventListener('click', (e) => {
+        const button = e.target.closest('button');
+        if (button) {
+            const key = button.dataset.key;
+            if (key) {
+                handleKeyAction(key);
+            }
         }
-    }
-});
+    });
+
+    // Handle physical keyboard presses
+    document.addEventListener('keydown', (e) => {
+        if (gameOver) return;
+
+        const key = e.key;
+        if (key === 'Enter') {
+            handleKeyAction('Enter');
+        } else if (key === 'Backspace') {
+            handleKeyAction('Backspace');
+        } else if (key.length === 1 && key.match(/[a-zA-Z]/)) {
+            handleKeyAction(key.toUpperCase());
+        }
+    });
+
 
     // Start the game immediately
     startNewGame();
-
 </script>
-
-</body>
-</html>
