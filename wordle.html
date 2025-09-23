@@ -458,28 +458,7 @@
 
     // Initializes the game, setting the target word and resetting state.
     function startNewGame() {
-  // Reset DOM and add event listeners
-    boardElement.innerHTML = '';
-    for (let i = 0; i < NUM_ROWS; i++) {
-        const rowEl = document.createElement('div');
-        rowEl.className = 'row';
-        for (let j = 0; j < NUM_COLS; j++) {
-            const tileEl = document.createElement('div');
-            tileEl.className = 'tile';
-            rowEl.appendChild(tileEl);
-
-            // Add a click event listener to each tile
-            tileEl.addEventListener('click', () => {
-                if (i === currentRow && !gameOver) {
-                    // Set the current position to the clicked tile's index
-                    currentPosition = j;
-                    focusOnTile(j);
-                }
-            });
-        }
-        boardElement.appendChild(rowEl);
-    }
-        
+  // Reset DOM and add event listeners        
         if (WORD_LIST.length > 0) {
             targetWord = WORD_LIST[Math.floor(Math.random() * WORD_LIST.length)];
         } else {
