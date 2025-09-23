@@ -489,6 +489,14 @@
         renderKeyboard();
     }
 
+    //Enables haptic feedback on keystrokes
+    function hapticFeedback() {
+    // Check if the Vibration API is supported by the browser
+    if ("vibrate" in navigator) {
+        // Vibrate for 50 milliseconds
+        navigator.vibrate(50);
+    }
+}
     // Displays a temporary message to the user.
     function showMessage(text) {
         messageBox.textContent = text;
@@ -641,6 +649,7 @@
     // --- Event Listeners ---
 
 // Listen for touches on the on-screen keyboard to prevent zoom on mobile.
+// Listen for touches on the on-screen keyboard to prevent zoom on mobile.
 document.getElementById('keyboard').addEventListener('touchstart', (e) => {
     // Prevent the default browser behavior (e.g., scrolling, zooming)
     e.preventDefault();
@@ -657,45 +666,17 @@ document.getElementById('keyboard').addEventListener('touchstart', (e) => {
         if (key) { // Use the data-key for all actions
             if (key === 'Enter') {
                 submitGuess();
+                hapticFeedback();
             } else if (key === 'Backspace') {
                 removeLetter();
+                hapticFeedback();
             } else if (key.length === 1 && key.match(/[a-zA-Z]/)) {
                 addLetter(key);
+                hapticFeedback();
             }
         }
     }
 }, { passive: false }); // Add { passive: false } to allow e.preventDefault()
-
-    // Listen for clicks on the on-screen keyboard
-    document.getElementById('keyboard').addEventListener('click', (e) => {
-        if (gameOver) return;
-
-        const target = e.target;
-        // Find the closest button element that was clicked
-        const button = target.closest('button');
-
-        if (button) {
-            let key = button.dataset.key; // Check for a data-key attribute first
-
-            // If no data-key, fall back to text content for letter keys
-            if (!key) {
-                key = button.textContent.trim().toLowerCase();
-            }
-
-            if (key === 'Enter') {
-                submitGuess();
-            } else if (key === 'Backspace') {
-                removeLetter();
-            } else if (key.length === 1 && key.match(/[a-zA-Z]/)) {
-                addLetter(key);
-            }
-        }
-    });
-    
-    // Listen for new game button click
-    newGameButton.addEventListener('click', () => {
-        startNewGame();
-    });
 
     // Start the game immediately
     startNewGame();
