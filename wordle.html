@@ -488,6 +488,23 @@
         renderKeyboard();
     }
 
+//enables phopne and desktop keyboard entry
+function handleKeyPress(key) {
+    if (gameOver) return;
+
+    if (key === 'Enter') {
+        submitGuess();
+        hapticFeedback();
+    } else if (key === 'Backspace') {
+        removeLetter();
+        hapticFeedback();
+    } else if (key.length === 1 && key.match(/[a-zA-Z]/)) {
+        addLetter(key);
+        hapticFeedback();
+    }
+}
+
+    
     //Enables haptic feedback on keystrokes
     function hapticFeedback() {
     // Check if the Vibration API is supported by the browser
@@ -647,35 +664,28 @@
 
     // --- Event Listeners ---
 
-// Listen for touches on the on-screen keyboard to prevent zoom on mobile.
-// Listen for touches on the on-screen keyboard to prevent zoom on mobile.
+// Touch event listener for mobile devices
 document.getElementById('keyboard').addEventListener('touchstart', (e) => {
-    // Prevent the default browser behavior (e.g., scrolling, zooming)
     e.preventDefault();
-
-    if (gameOver) return;
-
-    const target = e.target;
-    // Find the closest button element that was touched
-    const button = target.closest('button');
-
+    const button = e.target.closest('button');
     if (button) {
-        let key = button.dataset.key;
-
-        if (key) { // Use the data-key for all actions
-            if (key === 'Enter') {
-                submitGuess();
-                hapticFeedback();
-            } else if (key === 'Backspace') {
-                removeLetter();
-                hapticFeedback();
-            } else if (key.length === 1 && key.match(/[a-zA-Z]/)) {
-                addLetter(key);
-                hapticFeedback();
-            }
+        const key = button.dataset.key;
+        if (key) {
+            handleKeyAction(key);
         }
     }
-}, { passive: false }); // Add { passive: false } to allow e.preventDefault()
+}, { passive: false });
+
+// Click event listener for desktop browsers
+document.getElementById('keyboard').addEventListener('click', (e) => {
+    const button = e.target.closest('button');
+    if (button) {
+        const key = button.dataset.key;
+        if (key) {
+            handleKeyAction(key);
+        }
+    }
+});
 
     // Start the game immediately
     startNewGame();
