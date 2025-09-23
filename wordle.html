@@ -698,7 +698,19 @@
             handleKeyAction(key.toUpperCase());
         }
     });
+    
+document.addEventListener('keydown', (e) => {
+    // Prevent default browser behavior for certain keys (like Enter or Backspace)
+    if (e.key === 'Enter' || e.key === 'Backspace') {
+        e.preventDefault();
+    }
+    
+    // Check if the game is over to prevent new guesses
+    if (gameOver) return;
 
+    // Direct the key press to the unified handler
+    handleKeyAction(e.key.toUpperCase());
+});
 
     // Start the game immediately
     startNewGame();
