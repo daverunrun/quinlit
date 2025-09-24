@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -179,268 +177,14 @@
     </div>
 
 <script>
-    const WORD_LIST = [
-        'aback', 'abase', 'abate', 'abbey', 'abbot', 'abide', 'abort', 'about', 'above', 'abuse',
-        'abyss', 'acorn', 'acrid', 'actor', 'acute', 'adage', 'adapt', 'adept', 'admin', 'admit',
-        'adobe', 'adopt', 'adore', 'adorn', 'adult', 'affix', 'afire', 'afoot', 'after', 'again',
-        'agape', 'agate', 'agent', 'agile', 'aging', 'aglow', 'agony', 'agree', 'ahead', 'aisle',
-        'alarm', 'album', 'alert', 'algae', 'alias', 'alibi', 'alien', 'align', 'alike', 'alive',
-        'allay', 'alley', 'allot', 'allow', 'alloy', 'aloft', 'alone', 'along', 'aloof', 'aloud',
-        'alpha', 'altar', 'alter', 'amass', 'amaze', 'amber', 'amble', 'ameba', 'amend', 'amino',
-        'amiss', 'among', 'ample', 'amply', 'amuse', 'angel', 'anger', 'angle', 'angry', 'angst',
-        'anime', 'ankle', 'annex', 'annoy', 'annul', 'anode', 'antic', 'anvil', 'aorta', 'apart',
-        'aphid', 'apnea', 'apple', 'apply', 'apron', 'aptly', 'arbor', 'ardor', 'arena', 'argon',
-        'argot', 'argue', 'arise', 'armor', 'aroma', 'arose', 'array', 'arrow', 'arson', 'ascot',
-        'ashen', 'aside', 'askew', 'assay', 'asset', 'atlas', 'attic', 'audio', 'audit', 'augur',
-        'aunty', 'aural', 'avail', 'avert', 'avian', 'avoid', 'await', 'awake', 'award', 'aware',
-        'awful', 'awoke', 'axiom', 'bacon', 'badge', 'badly', 'bagel', 'baker', 'balmy', 'banal',
-        'banjo', 'barge', 'baron', 'basil', 'basse', 'batch', 'baste', 'bathe', 'bayou', 'beach',
-        'beady', 'beard', 'beast', 'began', 'begat', 'begin', 'begun', 'below', 'bendy', 'bezel',
-        'bible', 'bicep', 'biddy', 'bigot', 'biker', 'bilge', 'bingo', 'biome', 'birch', 'birth',
-        'bison', 'black', 'blade', 'blame', 'bland', 'blank', 'blare', 'blast', 'blaze', 'bleak',
-        'bleat', 'bleed', 'bleep', 'blend', 'bless', 'blimp', 'blind', 'blink', 'bliss', 'blitz',
-        'bloat', 'block', 'bloke', 'blond', 'blood', 'bloom', 'bluff', 'blurb', 'blurt', 'blush',
-        'board', 'boast', 'bogus', 'boing', 'boise', 'booze', 'borax', 'bored', 'bongo', 'boney',
-        'bosom', 'bossy', 'bough', 'bowel', 'boxer', 'braid', 'brain', 'brake', 'brand', 'brave',
-        'bravo', 'brawl', 'brawn', 'braze', 'bread', 'break', 'bream', 'breed', 'breez', 'brief',
-        'briny', 'brisk', 'broad', 'broil', 'broke', 'brute', 'buena', 'buggy', 'bugle', 'build',
-        'built', 'bulge', 'bully', 'bunch', 'bumpy', 'burly', 'burnt', 'buses', 'bushy', 'butch',
-        'buyer', 'bylaw', 'cabal', 'cabby', 'cabin', 'cable', 'cacao', 'cache', 'caddy', 'cairn',
-        'camel', 'canal', 'candy', 'canon', 'caper', 'cargo', 'carol', 'carry', 'carve', 'caste',
-        'catch', 'cater', 'cause', 'cavil', 'cease', 'cedar', 'celeb', 'cello', 'chafe', 'chalk',
-        'champ', 'chaos', 'charm', 'chart', 'chase', 'cheap', 'cheat', 'check', 'cheek', 'cheer',
-        'chess', 'chest', 'chick', 'chide', 'chief', 'child', 'chile', 'chili', 'chill', 'china',
-        'chive', 'choir', 'choke', 'chomp', 'chord', 'chose', 'chuck', 'chump', 'chunk', 'churn',
-        'cigar', 'cilia', 'circa', 'cites', 'civic', 'civil', 'claim', 'clamp', 'clams', 'clasp',
-        'class', 'clave', 'clean', 'clear', 'cleft', 'clerk', 'click', 'cliff', 'climb', 'clime',
-        'cling', 'clink', 'cloak', 'clock', 'clone', 'close', 'cloth', 'cloud', 'clout', 'clove',
-        'clown', 'clump', 'clung', 'coach', 'coast', 'cobra', 'cocoa', 'colon', 'color', 'combo',
-        'comet', 'comfy', 'comic', 'conch', 'condo', 'conic', 'corny', 'couch', 'cough', 'could',
-        'count', 'court', 'coven', 'cover', 'covey', 'crack', 'craft', 'cramp', 'crane', 'crank',
-        'crash', 'crass', 'crate', 'crave', 'crawl', 'craze', 'crazy', 'cream', 'creed', 'creek',
-        'creme', 'crepe', 'cress', 'crest', 'crick', 'cried', 'crier', 'crime', 'crimp', 'crisp',
-        'crock', 'crone', 'crony', 'crook', 'cross', 'croup', 'crowd', 'crown', 'crude', 'cruel',
-        'crumb', 'crump', 'crush', 'crust', 'crypt', 'cubic', 'cumin', 'curio', 'curly', 'curry',
-        'curse', 'curve', 'cushy', 'cycle', 'cynic', 'daddy', 'daily', 'dairy', 'daisy', 'dally',
-        'dance', 'dandy', 'darer', 'dated', 'dazed', 'debut', 'decal', 'decay', 'decor', 'decoy',
-        'defer', 'deity', 'delta', 'delve', 'denim', 'dense', 'depot', 'depth', 'derby', 'deter',
-        'detox', 'deuce', 'devil', 'diary', 'dicey', 'digit', 'dilly', 'dingo', 'dingy', 'diode',
-        'dirge', 'dirty', 'disco', 'ditch', 'ditty', 'diver', 'dizzy', 'dodge', 'dogma', 'doing',
-        'donor', 'donut', 'dopey', 'doubt', 'dough', 'douse', 'downy', 'dozen', 'draft', 'drain',
-        'drama', 'drank', 'drape', 'drawl', 'drawn', 'dread', 'dream', 'dress', 'dried', 'drier',
-        'drift', 'drill', 'drink', 'drive', 'droll', 'drone', 'droop', 'dross', 'drove', 'drown',
-        'druid', 'drunk', 'dryer', 'duchy', 'dully', 'dumbo', 'dummy', 'dunce', 'dunes', 'duomo',
-        'duped', 'dusty', 'dwarf', 'dwell', 'dying', 'eager', 'eagle', 'early', 'earth', 'eased',
-        'eater', 'eclat', 'edict', 'edify', 'eerie', 'egret', 'eight', 'eject', 'elate', 'elbow',
-        'elder', 'elect', 'elegy', 'elfin', 'elite', 'elope', 'elude', 'emcee', 'enact', 'endow',
-        'enema', 'enemy', 'enjoy', 'enrol', 'entry', 'envoy', 'epoch', 'epoxy', 'equal', 'equip',
-        'erase', 'erect', 'erode', 'error', 'essay', 'ether', 'ethic', 'ethos', 'evict', 'evoke',
-        'exact', 'exalt', 'excel', 'exert', 'exile', 'exist', 'expel', 'extra', 'fable', 'facet',
-        'faint', 'fairy', 'faith', 'false', 'fancy', 'fanny', 'farce', 'fatal', 'fatty', 'fault',
-        'fauna', 'favor', 'feast', 'fecal', 'feign', 'felon', 'femur', 'fence', 'feral', 'ferry',
-        'fever', 'fiber', 'ficus', 'field', 'fiend', 'fiery', 'fifth', 'fifty', 'fight', 'filer',
-        'filet', 'filly', 'filmy', 'final', 'finch', 'fined', 'finer', 'fired', 'first', 'fishy',
-        'fixer', 'fizzy', 'fjord', 'flack', 'flags', 'flail', 'flair', 'flake', 'flaky', 'flame',
-        'flank', 'flaps', 'flare', 'flash', 'flask', 'flats', 'flaw', 'flax', 'flea', 'fleck',
-        'flees', 'fleet', 'flesh', 'flick', 'flier', 'flies', 'fling', 'flint', 'flips', 'flirt',
-        'float', 'flock', 'flood', 'floor', 'flops', 'flora', 'floss', 'flour', 'flout', 'flows',
-        'fluid', 'fluke', 'flung', 'flunk', 'flush', 'flute', 'flyer', 'foamy', 'focal', 'focus',
-        'foggy', 'foist', 'folio', 'folly', 'force', 'forge', 'forks', 'forma', 'forty', 'foul',
-        'found', 'fount', 'fours', 'fowls', 'frail', 'frame', 'frank', 'fraud', 'freak', 'freed',
-        'freer', 'fresh', 'friar', 'fried', 'frier', 'frill', 'frisk', 'frizz', 'frock', 'frogs',
-        'frond', 'front', 'frost', 'froth', 'frown', 'fruit', 'fryer', 'fugue', 'fully', 'fungi',
-        'funky', 'funny', 'furry', 'fussy', 'fuzzy', 'gabby', 'gaffe', 'gaily', 'gains', 'gaits',
-        'galls', 'gamba', 'gamer', 'gamin', 'gamma', 'gamut', 'gases', 'gassy', 'gated', 'gates',
-        'gauge', 'gauss', 'gauze', 'gavel', 'gawky', 'gecko', 'geese', 'genes', 'genie', 'genre',
-        'ghost', 'ghoul', 'giant', 'giddy', 'gifts', 'gilds', 'gills', 'gimme', 'gimme', 'gismo',
-        'glade', 'gland', 'glare', 'glass', 'glaze', 'gleam', 'glean', 'glide', 'glint', 'gloat',
-        'globe', 'gloom', 'glory', 'gloss', 'glove', 'glows', 'glued', 'gnash', 'gnats', 'gnaws',
-        'goads', 'goats', 'godly', 'going', 'golly', 'gonad', 'goner', 'gongs', 'gonna', 'goods',
-        'goody', 'goofy', 'goose', 'gorge', 'gouge', 'gourd', 'grace', 'grade', 'graft', 'grail',
-        'grain', 'grams', 'grand', 'grant', 'grape', 'graph', 'grasp', 'grass', 'grate', 'grave',
-        'gravy', 'graze', 'great', 'greed', 'green', 'greet', 'grief', 'grill', 'grime', 'grimy',
-        'grind', 'gripe', 'gross', 'group', 'grout', 'grove', 'growl', 'grown', 'gruel', 'gruff',
-        'grunt', 'guard', 'guava', 'guess', 'guest', 'guide', 'guild', 'guile', 'guilt', 'guise',
-        'gulch', 'gulfs', 'gulls', 'gully', 'gulps', 'gumbo', 'gummi', 'gummy', 'gunky', 'guppy',
-        'gurus', 'gusto', 'gusts', 'gusty', 'gutsy', 'gutsy', 'gypsy', 'habit', 'hacks', 'hades',
-        'haiku', 'hairs', 'hairy', 'halls', 'halts', 'halve', 'handy', 'hangs', 'happy', 'hardy',
-        'hares', 'harem', 'harms', 'harps', 'harts', 'haste', 'hasty', 'hatch', 'hated', 'hater',
-        'haunt', 'haven', 'havoc', 'hawse', 'hazed', 'hazel', 'heads', 'heals', 'hears', 'heart',
-        'heath', 'heats', 'heavy', 'hefty', 'heigh', 'heirs', 'helix', 'hello', 'helps', 'hence',
-        'herbs', 'herds', 'heros', 'hewed', 'hicks', 'hides', 'highs', 'hills', 'hilts', 'hinds',
-        'hired', 'hires', 'hitch', 'hives', 'hoard', 'hoars', 'hobby', 'hocus', 'holds', 'holes',
-        'holly', 'homes', 'homey', 'honed', 'hones', 'honey', 'honor', 'hopes', 'horde', 'horns',
-        'horse', 'hosed', 'hotel', 'hotly', 'hours', 'house', 'hover', 'howdy', 'howls', 'hulls',
-        'human', 'humid', 'humph', 'humps', 'humus', 'hunch', 'hunks', 'hunts', 'hurts', 'husky',
-        'hydra', 'hydro', 'hyena', 'hymen', 'hypes', 'ichor', 'icons', 'idaho', 'ideal', 'ideas',
-        'idiom', 'idiot', 'idled', 'idler', 'idyll', 'igloo', 'ikats', 'ileum', 'image', 'imago',
-        'imbue', 'impel', 'imply', 'inane', 'incur', 'index', 'india', 'indie', 'inept', 'inert',
-        'infer', 'infix', 'ingot', 'inlay', 'inlet', 'inner', 'input', 'inset', 'inter', 'inure',
-        'iodin', 'ionic', 'irate', 'irony', 'islet', 'issue', 'itchy', 'ivory', 'jaded', 'jails',
-        'jambs', 'japan', 'japes', 'jaunt', 'jawed', 'jazzy', 'jeans', 'jello', 'jelly', 'jerky',
-        'jests', 'jetty', 'jewel', 'jihad', 'jilts', 'jimmy', 'jingo', 'jinks', 'jived', 'jives',
-        'jocko', 'johns', 'joins', 'joint', 'joist', 'joked', 'joker', 'jokes', 'jolly', 'jolts',
-        'joust', 'jowls', 'joyed', 'judgy', 'judge', 'juice', 'juicy', 'julep', 'jumbo', 'jumps',
-        'jumpy', 'junks', 'junky', 'juror', 'justs', 'kabob', 'kappa', 'karma', 'karts', 'kathy',
-        'kebab', 'kebob', 'kendo', 'ketch', 'ketch', 'kevin', 'keyed', 'khaki', 'kicks', 'kiddy',
-        'kilos', 'kilts', 'kinds', 'kings', 'kinin', 'kinks', 'kinky', 'kiosk', 'kites', 'kiwis',
-        'knead', 'knees', 'knell', 'knelt', 'knife', 'knits', 'knobs', 'knock', 'knots', 'knows',
-        'knurl', 'koala', 'koels', 'kooks', 'kooky', 'kraut', 'krill', 'kudzu', 'kudos', 'kudos',
-        'kvass', 'label', 'labia', 'labor', 'laced', 'laces', 'lacks', 'lairs', 'lakes', 'lambs',
-        'lamps', 'lance', 'lands', 'lanky', 'lapse', 'larch', 'large', 'larks', 'larva', 'laser',
-        'latch', 'later', 'lathe', 'laths', 'latte', 'laugh', 'lavas', 'laval', 'lawns', 'laxly',
-        'layer', 'lazed', 'leach', 'leads', 'leafs', 'leafy', 'leaks', 'leaky', 'leapt', 'learn',
-        'lease', 'leash', 'least', 'leave', 'leech', 'leers', 'lefty', 'legal', 'leggy', 'lemur',
-        'lends', 'leper', 'letup', 'levee', 'level', 'lever', 'liars', 'libel', 'liana', 'licit',
-        'licks', 'lidos', 'liege', 'liens', 'lifer', 'light', 'liken', 'likes', 'lilac', 'lilts',
-        'limbo', 'limbs', 'limes', 'limit', 'limos', 'limps', 'linen', 'liner', 'lines', 'lingo',
-        'links', 'lions', 'lipid', 'lirae', 'lisle', 'lites', 'litre', 'lived', 'liver', 'lives',
-        'livid', 'llama', 'loads', 'loafs', 'loams', 'loamy', 'loath', 'lobby', 'lobed', 'lochs',
-        'locks', 'locus', 'lodge', 'loess', 'lofty', 'logos', 'loins', 'lolls', 'loner', 'longs',
-        'loons', 'loony', 'loops', 'loopy', 'loose', 'loran', 'lords', 'lorry', 'loser', 'loses',
-        'lotus', 'louse', 'lousy', 'loved', 'lover', 'loves', 'lowly', 'loyal', 'lucid', 'lucky',
-        'lulls', 'lumen', 'lumped', 'lumpy', 'lunar', 'lunch', 'lungs', 'lurch', 'lured', 'lures',
-        'lurid', 'lurks', 'lushy', 'lusts', 'lusty', 'lutes', 'luxes', 'lying', 'lymph', 'lyres',
-        'lyric', 'macho', 'macro', 'madam', 'madly', 'mafia', 'magic', 'magma', 'mahog', 'maize',
-        'major', 'maker', 'males', 'malls', 'malts', 'malty', 'mamma', 'manga', 'mango', 'manic',
-        'manly', 'manor', 'manse', 'maple', 'march', 'marry', 'marsh', 'maser', 'mason', 'match',
-        'mated', 'mates', 'matte', 'mauve', 'maxed', 'maxes', 'maxim', 'maybe', 'mayor', 'meals',
-        'mealy', 'meant', 'meats', 'meaty', 'mecca', 'medal', 'media', 'medic', 'meets', 'melee',
-        'melon', 'melts', 'mercy', 'merge', 'merit', 'merry', 'mesas', 'messy', 'metal', 'meter',
-        'metes', 'metro', 'micro', 'midas', 'midst', 'might', 'milks', 'milky', 'mimes', 'mimic',
-        'mince', 'minds', 'mined', 'miner', 'mines', 'minim', 'minis', 'minks', 'minor', 'minty',
-        'minus', 'mired', 'mirky', 'mirth', 'miser', 'mists', 'misty', 'mites', 'mitts', 'mixer',
-        'mixes', 'moans', 'moats', 'mocha', 'moist', 'molar', 'molds', 'moldy', 'moles', 'momma',
-        'mommy', 'money', 'month', 'mooch', 'moods', 'moody', 'moons', 'moors', 'moose', 'moped',
-        'mopes', 'moral', 'morel', 'morns', 'morph', 'mosey', 'motel', 'moths', 'motor', 'mould',
-        'moult', 'mound', 'mount', 'mourn', 'mouse', 'mouth', 'moved', 'mover', 'moves', 'movie',
-        'mucks', 'muddy', 'muffs', 'mules', 'mulls', 'mumbo', 'munch', 'mural', 'murky', 'mused',
-        'muses', 'mushy', 'music', 'musky', 'mussy', 'musts', 'musty', 'muted', 'mutes', 'mutts',
-        'mynah', 'myrrh', 'nabob', 'nails', 'naive', 'naked', 'named', 'names', 'nanny', 'napes',
-        'nappy', 'nasal', 'nasty', 'natal', 'naval', 'navel', 'nears', 'needy', 'neigh', 'nerds',
-        'nerdy', 'nerve', 'nests', 'newly', 'newts', 'nexus', 'nicer', 'niche', 'nifty', 'night',
-        'nimbi', 'nimby', 'ninth', 'nippy', 'nitid', 'nixed', 'nixes', 'noble', 'nobly', 'noise',
-        'noisy', 'nonny', 'north', 'nosed', 'noses', 'notch', 'noted', 'notes', 'nouns', 'novel',
-        'nudge', 'nuked', 'nukes', 'nulls', 'numbs', 'nurse', 'nylon', 'nymph', 'oaken', 'oases',
-        'oaten', 'oaths', 'obese', 'obeys', 'oasis', 'ocean', 'ocher', 'octal', 'octet', 'odder',
-        'oddly', 'odors', 'offal', 'offer', 'often', 'ogres', 'oiled', 'oils', 'okays', 'older',
-        'oldie', 'olive', 'omega', 'onely', 'onion', 'onlay', 'onset', 'opera', 'opine', 'opium',
-        'opted', 'optic', 'orals', 'orbed', 'orbit', 'order', 'organ', 'other', 'otter', 'ought',
-        'ounce', 'outdo', 'outgo', 'ouzel', 'ovals', 'ovary', 'ovate', 'overt', 'owing', 'owlet',
-        'owned', 'owner', 'oxbow', 'oxide', 'ozone', 'paced', 'paces', 'packs', 'pacts', 'paddy',
-        'pages', 'pails', 'pains', 'paint', 'pairs', 'paled', 'paler', 'pales', 'palms', 'palsy',
-        'paned', 'panel', 'panic', 'pants', 'paper', 'parch', 'parer', 'parks', 'parse', 'parts',
-        'party', 'pasta', 'paste', 'pasty', 'patch', 'pated', 'patel', 'paten', 'paths', 'patio',
-        'patsy', 'pause', 'paved', 'paves', 'payee', 'peace', 'peach', 'peaks', 'peals', 'pearl',
-        'pears', 'pecan', 'pecks', 'peeps', 'pekes', 'pelts', 'penal', 'pence', 'penny', 'perch',
-        'peril', 'perks', 'perry', 'petal', 'phase', 'phone', 'photo', 'piano', 'picks', 'piers',
-        'piety', 'pigmy', 'piles', 'pills', 'pinch', 'pined', 'pines', 'pingy', 'pinks', 'pinky',
-        'pints', 'pions', 'pious', 'pipes', 'piper', 'pique', 'piste', 'piths', 'pithy', 'pivot',
-        'pixel', 'pixie', 'pizza', 'place', 'plaid', 'plain', 'plait', 'plane', 'plank', 'plans',
-        'plant', 'plate', 'plath', 'plays', 'plaza', 'plead', 'pleas', 'pleat', 'plumb', 'plume',
-        'plums', 'plunk', 'poach', 'pocks', 'podge', 'poets', 'point', 'poise', 'polar', 'poles',
-        'polls', 'pools', 'porch', 'pores', 'ports', 'posed', 'poses', 'posse', 'posts', 'potty',
-        'pouch', 'pound', 'pours', 'power', 'prawn', 'preen', 'press', 'price', 'prick', 'pride',
-        'pried', 'pries', 'prime', 'prims', 'prink', 'print', 'prior', 'prism', 'privy', 'prize',
-        'prods', 'profs', 'promo', 'prone', 'props', 'proud', 'prove', 'prowl', 'proxy', 'prude',
-        'prune', 'psalm', 'psych', 'pucks', 'puffs', 'puffy', 'pulpy', 'pulse', 'punch', 'puppy',
-        'puree', 'purer', 'purge', 'purrs', 'purse', 'pushy', 'putty', 'pylon', 'pyres', 'quack',
-        'quaff', 'quail', 'quake', 'qualm', 'quark', 'quart', 'quash', 'quasi', 'queen', 'quell',
-        'query', 'quest', 'quill', 'quilt', 'quint', 'quips', 'quire', 'quirt', 'quite', 'quits',
-        'quota', 'quote', 'rabbi', 'rabid', 'racer', 'races', 'racks', 'radii', 'radio', 'radix',
-        'rails', 'rainy', 'raise', 'rajah', 'rally', 'ramps', 'ranch', 'range', 'rangy', 'ranks',
-        'rants', 'rapid', 'raspy', 'rated', 'rates', 'ratio', 'raven', 'razed', 'razes', 'razor',
-        'reach', 'react', 'reads', 'ready', 'realm', 'reams', 'reaps', 'rebel', 'rebut', 'recap',
-        'recut', 'reeds', 'reedy', 'reefs', 'reeks', 'reels', 'reign', 'reins', 'relax', 'relay',
-        'relic', 'reman', 'remap', 'remit', 'renal', 'rends', 'renew', 'repay', 'repel', 'reply',
-        'repro', 'reran', 'rerun', 'reset', 'resin', 'retch', 'retro', 'retry', 'reuse', 'revel',
-        'revue', 'rhino', 'rhyme', 'riced', 'rices', 'ricks', 'rider', 'ridge', 'rifle', 'rifts',
-        'rigor', 'riled', 'riles', 'rills', 'rimed', 'rimes', 'rings', 'rinse', 'riots', 'ripen',
-        'riper', 'risen', 'riser', 'rises', 'risks', 'risky', 'rites', 'rival', 'river', 'rivet',
-        'roach', 'roads', 'roams', 'roans', 'roars', 'roast', 'robed', 'robed', 'robed', 'robes',
-        'robot', 'rocks', 'rocky', 'rodeo', 'rogue', 'rolls', 'roman', 'romps', 'rondo', 'roods',
-        'roofs', 'rooks', 'rooms', 'roomy', 'roost', 'roots', 'roped', 'ropes', 'roses', 'rosin',
-        'rotor', 'rouge', 'rough', 'round', 'rouse', 'route', 'rover', 'rowdy', 'rowel', 'rower',
-        'royal', 'ruins', 'ruled', 'ruler', 'rules', 'rumba', 'rumen', 'rumps', 'runes', 'rural',
-        'rusty', 'saber', 'sable', 'sacks', 'sadly', 'saggy', 'sails', 'saint', 'salad', 'sally',
-        'salon', 'salsa', 'salty', 'salve', 'salvo', 'samba', 'sands', 'sandy', 'sated', 'sates',
-        'satin', 'sauce', 'saucy', 'sauna', 'saved', 'saver', 'saves', 'savor', 'savvy', 'sawed',
-        'saxed', 'scabs', 'scald', 'scale', 'scamp', 'scams', 'scans', 'scant', 'scape', 'scars',
-        'scarf', 'scary', 'scene', 'scent', 'schmo', 'scion', 'scoff', 'scold', 'scone', 'scoop',
-        'scope', 'score', 'scorn', 'scour', 'scout', 'scowl', 'scram', 'scrap', 'screw', 'scrub',
-        'scuff', 'scull', 'seals', 'seams', 'sears', 'seats', 'seeds', 'seedy', 'seeks', 'seems',
-        'sells', 'sends', 'senor', 'sense', 'serer', 'serfs', 'serum', 'serve', 'setup', 'seven',
-        'sewed', 'sewer', 'shack', 'shade', 'shady', 'shaft', 'shake', 'shaky', 'shale', 'shall',
-        'shame', 'shams', 'shape', 'shard', 'share', 'shark', 'sharp', 'shave', 'shawl', 'sheaf',
-        'sheen', 'sheep', 'sheer', 'sheet', 'shelf', 'shell', 'shied', 'shies', 'shift', 'shill',
-        'shims', 'shine', 'shins', 'shiny', 'ships', 'shire', 'shirk', 'shirt', 'shoal', 'shock',
-        'shoed', 'shoes', 'shone', 'shook', 'shoot', 'shops', 'shore', 'shorn', 'short', 'shout',
-        'shove', 'shows', 'shred', 'shrew', 'shrub', 'shrug', 'shush', 'shyly', 'sided', 'sides',
-        'sidle', 'siege', 'sieve', 'sifts', 'sighs', 'sight', 'signs', 'silks', 'silky', 'silly',
-        'silos', 'silt', 'sinew', 'since', 'sinew', 'singe', 'sinks', 'sired', 'siren', 'sires',
-        'sisal', 'sissy', 'sited', 'sites', 'sixes', 'sixth', 'sixty', 'sized', 'sizes', 'skate',
-        'skids', 'skill', 'skims', 'skins', 'skips', 'skirt', 'skulk', 'skull', 'slack', 'slain',
-        'slake', 'slang', 'slant', 'slaps', 'slash', 'slate', 'slave', 'slays', 'sleds', 'sleek',
-        'sleep', 'sleet', 'slice', 'slick', 'slide', 'slims', 'slime', 'slimy', 'sling', 'slips',
-        'slits', 'slogs', 'slope', 'slosh', 'sloth', 'slots', 'slump', 'slung', 'slush', 'sluts',
-        'smack', 'small', 'smart', 'smear', 'smell', 'smelt', 'smile', 'smirk', 'smite', 'smock',
-        'smoke', 'smoky', 'smote', 'snack', 'snafu', 'snail', 'snake', 'snaky', 'snaps', 'snare',
-        'snarl', 'snatch', 'snath', 'sneak', 'sneer', 'sniff', 'snipe', 'snips', 'snits', 'snobs',
-        'snood', 'snook', 'snoop', 'snoot', 'snore', 'snort', 'snout', 'snows', 'snowy', 'snubs',
-        'snuff', 'soaks', 'soaps', 'soapy', 'soars', 'socks', 'sodas', 'soggy', 'soils', 'solar',
-        'soles', 'solid', 'solve', 'songs', 'sonic', 'sonny', 'sooth', 'sooty', 'sores', 'sorer',
-        'sorry', 'sorts', 'souls', 'sound', 'soups', 'sour', 'sowed', 'sower', 'space', 'spade',
-        'spank', 'spare', 'spark', 'spasm', 'spate', 'spawn', 'speak', 'spear', 'specs', 'speck',
-        'speed', 'spell', 'spend', 'spent', 'spice', 'spicy', 'spied', 'spies', 'spike', 'spiky',
-        'spill', 'spilt', 'spine', 'spins', 'spiny', 'spire', 'spite', 'splat', 'split', 'spoil',
-        'spoke', 'spoof', 'spool', 'spoon', 'spoor', 'spore', 'sport', 'spots', 'spout', 'sprig',
-        'spud', 'spurn', 'spurs', 'squad', 'squat', 'squid', 'stack', 'staff', 'stage', 'stags',
-        'stain', 'stair', 'stake', 'stale', 'stalk', 'stamp', 'stand', 'stank', 'stare', 'stars',
-        'start', 'stash', 'state', 'stave', 'stead', 'steak', 'steal', 'steam', 'steed', 'steel',
-        'steep', 'steer', 'stems', 'steps', 'stern', 'stews', 'stick', 'stiff', 'stirs', 'stock',
-        'stoic', 'stoke', 'stole', 'stomp', 'stone', 'stony', 'stood', 'stool', 'stoop', 'stops',
-        'store', 'stork', 'storm', 'story', 'stout', 'stove', 'strap', 'straw', 'stray', 'strep',
-        'strew', 'strip', 'strop', 'stubs', 'stuck', 'studs', 'study', 'stuff', 'stump', 'stung',
-        'stunk', 'stunt', 'style', 'styli', 'suave', 'sucks', 'sugar', 'suite', 'sulks', 'sulky',
-        'sumac', 'summa', 'sumps', 'sunny', 'sunup', 'super', 'surer', 'surly', 'sushi', 'swabs',
-        'swags', 'swain', 'swamp', 'swank', 'swans', 'swaps', 'swarm', 'swash', 'swath', 'sways',
-        'swear', 'sweat', 'sweep', 'sweet', 'swell', 'swept', 'swift', 'swigs', 'swill', 'swims',
-        'swine', 'swing', 'swipe', 'swirl', 'swish', 'swoon', 'swoop', 'sword', 'swore', 'sworn',
-        'sylph', 'synch', 'syrup', 'tabby', 'table', 'taboo', 'tabor', 'tacks', 'tacos', 'tacts',
-        'tails', 'taken', 'taker', 'takes', 'tales', 'talks', 'tally', 'talon', 'tamed', 'tamer',
-        'tames', 'tango', 'tangs', 'tangy', 'tanks', 'tapes', 'taper', 'tardy', 'tarot', 'tarts',
-        'tasks', 'taste', 'tasty', 'tater', 'taxis', 'teach', 'teams', 'tears', 'tease', 'teats',
-        'teddy', 'teens', 'teeny', 'teeth', 'tells', 'tempi', 'tempo', 'tenet', 'tenor', 'tense',
-        'tenth', 'tepee', 'tepid', 'terms', 'terra', 'terse', 'testy', 'thaws', 'theft', 'their',
-        'theme', 'there', 'these', 'theta', 'thick', 'thief', 'thigh', 'thine', 'thing', 'think',
-        'third', 'thong', 'thorn', 'those', 'three', 'threw', 'throb', 'throe', 'thrum', 'thugs',
-        'thumb', 'thump', 'thyme', 'tiara', 'tibia', 'tidal', 'tides', 'tiers', 'tiger', 'tiled',
-        'tiles', 'tills', 'tilts', 'timed', 'timer', 'times', 'timid', 'tines', 'tinge', 'tinny',
-        'tints', 'tipsy', 'tired', 'tires', 'titan', 'title', 'toast', 'today', 'toddy', 'token',
-        'tolls', 'tombs', 'tongs', 'tonic', 'tooth', 'topaz', 'topic', 'torts', 'toted', 'totes',
-        'touch', 'tough', 'tours', 'towed', 'towel', 'towns', 'toxic', 'toxin', 'trace', 'track',
-        'tract', 'trade', 'trail', 'train', 'trait', 'tramp', 'trams', 'trap', 'trash', 'trawl',
-        'tread', 'treat', 'trees', 'treks', 'tress', 'trews', 'triage', 'triad', 'trial', 'tribe',
-        'trice', 'trick', 'tried', 'trier', 'tries', 'tripe', 'trips', 'trite', 'troll', 'tromp',
-        'troop', 'trope', 'trots', 'trout', 'truce', 'truck', 'truer', 'truly', 'trunk', 'truss',
-        'trust', 'truth', 'tuber', 'tucks', 'tuffs', 'tulip', 'tummy', 'tumor', 'tunes', 'tunic',
-        'tunnels', 'turbo', 'tutor', 'twang', 'tweak', 'tweed', 'tweet', 'twerp', 'twice', 'twigs',
-        'twill', 'twine', 'twins', 'twirl', 'twist', 'twits', 'tying', 'udder', 'ulcer', 'ultra',
-        'umbra', 'uncle', 'uncut', 'under', 'undue', 'undid', 'unfit', 'unite', 'unity', 'unlit',
-        'unmet', 'unpin', 'unsay', 'until', 'unwed', 'unzip', 'upend', 'upped', 'upper', 'upset',
-        'urban', 'urged', 'urges', 'urine', 'usage', 'users', 'usher', 'usual', 'utter', 'vague',
-        'valet', 'valid', 'valor', 'value', 'valve', 'vamps', 'vases', 'vault', 'vaunt', 'veers',
-        'vegan', 'veins', 'veldt', 'venal', 'venom', 'vents', 'venue', 'venus', 'verge', 'verse',
-        'vests', 'vials', 'vicus', 'video', 'views', 'vigas', 'villi', 'vines', 'vinyl', 'viola',
-        'vipers', 'viral', 'virus', 'visit', 'visor', 'vista', 'vital', 'vivid', 'vixen', 'vocal',
-        'vodka', 'vogue', 'voice', 'voids', 'voles', 'volts', 'voted', 'voter', 'votes', 'vouch',
-        'vowed', 'vowel', 'vulva', 'waded', 'wader', 'wades', 'wagon', 'wails', 'waist', 'waits',
-        'waive', 'walls', 'waltz', 'wands', 'wanes', 'wants', 'wards', 'wareh', 'wares', 'warmth',
-        'warns', 'warps', 'warts', 'warty', 'wasps', 'waste', 'watch', 'water', 'waved', 'waver',
-        'waves', 'waxen', 'waxes', 'weans', 'wears', 'weber', 'wedgy', 'weeds', 'weedy',
-   ];
+    // --- Configuration ---
+    let WORD_LIST = []; // Will be populated by fetch
     const NUM_ROWS = 6;
     const NUM_COLS = 5;
+    
+    // *** IMPORTANT: Replace with the Raw URL of your words.txt file on GitHub ***
+    const WORD_LIST_URL = 'words.txt'; 
+    // Example format: 'https://raw.githubusercontent.com/YourUsername/YourRepo/main/words.txt'
 
     // --- Game State Variables ---
     let targetWord = '';
@@ -454,18 +198,46 @@
     const messageBox = document.getElementById('messageBox');
     const newGameButtonContainer = document.getElementById('newGameButtonContainer');
     const newGameButton = document.getElementById('newGameButton');
+    
+    // --- Word List Loading ---
+    async function loadWordList() {
+        showMessage("Loading word list...");
+        try {
+            const response = await fetch(WORD_LIST_URL);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const text = await response.text();
+            // Split the text by newline, filter out empty lines, and convert to lowercase
+            WORD_LIST = text.split('\n')
+                            .map(word => word.trim().toLowerCase())
+                            .filter(word => word.length === NUM_COLS); // Only include 5-letter words
 
+            if (WORD_LIST.length === 0) {
+                throw new Error("Word list is empty or contains no 5-letter words.");
+            }
+            
+            showMessage("Word list loaded! Starting game...");
+            // Start the game once the word list is loaded
+            startNewGame(); 
+        } catch (error) {
+            console.error('Failed to load word list:', error);
+            showMessage(`Error: Could not load word list. Check console.`);
+            // Set game over to prevent interaction without a word list
+            gameOver = true;
+        }
+    }
+    
     // --- Game Logic Functions ---
 
     // Initializes the game, setting the target word and resetting state.
     function startNewGame() {
-        if (WORD_LIST.length > 0) {
-            targetWord = WORD_LIST[Math.floor(Math.random() * WORD_LIST.length)];
-        } else {
+        if (WORD_LIST.length === 0) {
             showMessage("Error: Word list not loaded. Please try again.");
             return;
         }
 
+        targetWord = WORD_LIST[Math.floor(Math.random() * WORD_LIST.length)];
         currentGuess = '';
         currentRow = 0;
         gameOver = false;
@@ -608,14 +380,14 @@
         const guessLetters = currentGuess.split('');
         const targetLetters = targetWord.split('');
         const tiles = boardElement.children[currentRow].children;
-        const usedLetters = new Set();
+        const usedTargetIndices = new Set();
         
         // First pass: find correct letters
         for (let i = 0; i < NUM_COLS; i++) {
             if (guessLetters[i] === targetLetters[i]) {
                 tiles[i].classList.add('correct');
                 keyboardStates[guessLetters[i]] = 'correct';
-                usedLetters.add(i);
+                usedTargetIndices.add(i);
             }
         }
         
@@ -626,25 +398,30 @@
             const letter = guessLetters[i];
             
             let isWrongPosition = false;
+            // Search the target word for the letter in a spot that hasn't been matched yet
             for (let j = 0; j < NUM_COLS; j++) {
-                if (!usedLetters.has(j) && letter === targetLetters[j]) {
+                if (!usedTargetIndices.has(j) && letter === targetLetters[j]) {
                     tiles[i].classList.add('wrong-position');
+                    
+                    // Update keyboard state (prioritize correct > wrong-position)
+                    const currentKeyStatus = keyboardStates[letter];
+                    if (currentKeyStatus !== 'correct') {
+                        keyboardStates[letter] = 'wrong-position';
+                    }
+                    
+                    usedTargetIndices.add(j); // Mark this target letter as used
                     isWrongPosition = true;
-                    usedLetters.add(j);
                     break;
                 }
             }
             
             if (!isWrongPosition) {
                 tiles[i].classList.add('not-in-word');
-            }
-            
-            // Update keyboard state (prioritize correct > wrong-position > not-in-word)
-            const currentKeyStatus = keyboardStates[letter];
-            if (currentKeyStatus !== 'correct' && currentKeyStatus !== 'wrong-position' && isWrongPosition) {
-                keyboardStates[letter] = 'wrong-position';
-            } else if (currentKeyStatus !== 'correct' && currentKeyStatus !== 'wrong-position' && !isWrongPosition) {
+                // Update keyboard state
+                const currentKeyStatus = keyboardStates[letter];
+                if (currentKeyStatus !== 'correct' && currentKeyStatus !== 'wrong-position') {
                     keyboardStates[letter] = 'not-in-word';
+                }
             }
         }
         renderKeyboard();
@@ -687,31 +464,25 @@
 
     // Handle physical keyboard presses
     document.addEventListener('keydown', (e) => {
+        // Prevent default browser behavior for certain keys (like Enter or Backspace)
+        if (e.key === 'Enter' || e.key === 'Backspace') {
+            e.preventDefault();
+        }
+        
         if (gameOver) return;
 
-        const key = e.key;
-        if (key === 'Enter') {
+        const key = e.key.toUpperCase();
+        if (key === 'ENTER') {
             handleKeyAction('Enter');
-        } else if (key === 'Backspace') {
+        } else if (key === 'BACKSPACE') {
             handleKeyAction('Backspace');
-        } else if (key.length === 1 && key.match(/[a-zA-Z]/)) {
-            handleKeyAction(key.toUpperCase());
+        } else if (key.length === 1 && key.match(/[A-Z]/)) {
+            handleKeyAction(key);
         }
     });
     
-document.addEventListener('keydown', (e) => {
-    // Prevent default browser behavior for certain keys (like Enter or Backspace)
-    if (e.key === 'Enter' || e.key === 'Backspace') {
-        e.preventDefault();
-    }
-    
-    // Check if the game is over to prevent new guesses
-    if (gameOver) return;
-
-    // Direct the key press to the unified handler
-    handleKeyAction(e.key.toUpperCase());
-});
-
-    // Start the game immediately
-    startNewGame();
+    // Start the word loading process
+    loadWordList();
 </script>
+</body>
+</html>
