@@ -2222,6 +2222,7 @@ rungs
 rupee
 rural
 ruses
+saber
 sable
 sabre
 sacks
