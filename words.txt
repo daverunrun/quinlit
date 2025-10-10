@@ -244,6 +244,8 @@ bevel
 bible
 bided
 bides
+biker
+bikes
 bight
 bigot
 bilge
